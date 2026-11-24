@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weekoverzicht Cafe De Binnenplaats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --steen:#EEF1F6; --vlak:#FFFFFF; --inkt:#06205B; --tekst:#1E2740; --zacht:#4F5B75; --lijn:#D5DBE6;
+  --groen:#21A538; --groentekst:#167A28; --grijs:#B4BED3; --baksteen:#B23A2A; --spoor:#E4E9F1;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --steen:#0F182D; --vlak:#1B2742; --inkt:#E8EDF7; --tekst:#D7DEEC; --zacht:#9AA6BF; --lijn:#2E3B5A;
+    --groen:#3DC257; --groentekst:#3DC257; --grijs:#4A5878; --baksteen:#EE8A72; --spoor:#243150; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --steen:#0F182D; --vlak:#1B2742; --inkt:#E8EDF7; --tekst:#D7DEEC; --zacht:#9AA6BF; --lijn:#2E3B5A;
+  --groen:#3DC257; --groentekst:#3DC257; --grijs:#4A5878; --baksteen:#EE8A72; --spoor:#243150; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--steen);color:var(--tekst);
+  font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:1.0625rem;line-height:1.55}
+main{max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+header{position:relative;padding-right:4.5rem}
+.logo{position:absolute;top:.25rem;right:0;width:48px;height:auto;display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo,:root:not([data-theme="light"]) .door img{background:#fff;padding:6px;border-radius:6px;box-sizing:content-box}}
+:root[data-theme="dark"] .logo,:root[data-theme="dark"] .door img{background:#fff;padding:6px;border-radius:6px;box-sizing:content-box}
+header h1{color:var(--inkt);font-size:clamp(1.6rem,4.5vw,2.1rem);line-height:1.15;margin:0 0 .4rem;font-weight:700}
+header p{margin:0;color:var(--zacht)}
+.kern{display:grid;grid-template-columns:repeat(4,1fr);margin:1.5rem 0 1.5rem;
+  border-top:3px solid var(--inkt);border-bottom:1px solid var(--lijn)}
+.kern div{padding:1rem .9rem 1.1rem 0}
+.kern div+div{padding-left:.9rem;border-left:1px solid var(--lijn)}
+.kern dt{color:var(--zacht);font-size:.9rem}
+.kern dd{margin:.2rem 0 0;color:var(--inkt);font-size:clamp(1.25rem,3.4vw,1.6rem);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums;line-height:1.2}
+.kern dd small{display:block;white-space:normal;font-size:.85rem;font-weight:400;color:var(--zacht);margin-top:.2rem}
+section{background:var(--vlak);border:1px solid var(--lijn);border-radius:6px;padding:1.5rem 1.25rem;margin-bottom:1.5rem}
+section h2{color:var(--inkt);font-size:1.25rem;line-height:1.3;margin:0 0 .3rem}
+.uitleg{color:var(--zacht);margin:0 0 1.25rem;font-size:.95rem}
+.actie{margin:1.4rem 0 0;padding:.9rem 1rem;background:var(--steen);border-left:4px solid var(--groen);border-radius:0 4px 4px 0}
+.actie strong{display:block;font-size:.85rem;color:var(--zacht);font-weight:700}
+.naam{font-size:.95rem}
+.naam small{display:block;color:var(--zacht);font-size:.8rem}
+.spoor{position:relative;display:block;background:var(--spoor);height:1.1rem;border-radius:2px}
+.balk{display:block;height:100%;width:var(--w);background:var(--groen);border-radius:2px}
+.balk.grijs{background:var(--grijs)}
+.waarde{font-variant-numeric:tabular-nums;text-align:right;font-weight:700}
+/* grafiek 1 */
+.rij{display:grid;grid-template-columns:9.5rem 1fr 3.6rem;gap:.75rem;align-items:center;padding:.35rem 0}
+.rij .balk{background:var(--grijs)}
+.rij.uitgelicht .balk{background:var(--baksteen)}
+.rij.uitgelicht .naam,.rij.uitgelicht .waarde{color:var(--baksteen);font-weight:700}
+.g1{position:relative}
+.legenda{display:flex;flex-wrap:wrap;gap:1rem;font-size:.85rem;color:var(--zacht);margin-top:.75rem}
+.legenda i{display:inline-block;width:.8rem;height:.8rem;border-radius:2px;margin-right:.35rem;vertical-align:-1px}
+/* grafiek 2 */
+.paar{display:grid;grid-template-columns:9.5rem 1fr;gap:.75rem;align-items:center;padding:.5rem 0;border-top:1px solid var(--lijn)}
+.paar:first-child{border-top:0}
+.balken{display:grid;gap:.3rem}
+.balken .spoor{background:none;display:flex;align-items:center;gap:.5rem;height:auto}
+.balken .balk{height:1rem;flex:0 0 auto;width:calc(var(--w) * .68)}
+.bedrag{font-size:.85rem;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--zacht)}
+.bedrag b{color:var(--groentekst)}
+/* grafiek 3 */
+.rij3{display:grid;grid-template-columns:9.5rem 1fr 4.6rem;gap:.75rem;align-items:center;padding:.55rem 0}
+.rij3.totaal{border-top:1px solid var(--lijn);margin-top:.3rem;padding-top:.85rem}
+.rij3.totaal .naam{font-weight:700}
+.as{position:relative;height:1.3rem;background:linear-gradient(var(--zacht),var(--zacht)) center/1px 100% no-repeat}
+.as .balk{position:absolute;top:.15rem;height:1rem;width:var(--w)}
+.as .plus{left:50%;background:var(--groen)}
+.as .min{right:50%;background:var(--baksteen)}
+.waarde.plus{color:var(--groentekst)} .waarde.min{color:var(--baksteen)}
+.asschaal{display:grid;grid-template-columns:9.5rem 1fr 4.6rem;gap:.75rem;font-size:.8rem;color:var(--zacht)}
+.asschaal span:nth-child(2){display:flex;justify-content:space-between}
+
+.vgl{display:block;font-size:.9rem;font-weight:700;margin-top:.15rem}
+.vgl.plus{color:var(--groentekst)} .vgl.min{color:var(--baksteen)} .vgl.gelijk{color:var(--zacht)}
+.dagen{display:grid;grid-template-columns:repeat(7,1fr);gap:.4rem;margin:0 0 .5rem}
+.dag{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.2rem}
+.dag .pct{font-size:.8rem;font-weight:700;color:var(--zacht)}
+.dag .pct.min{color:var(--baksteen)} .dag .pct.plus{color:var(--groentekst)}
+.kolom{position:relative;width:100%;max-width:3rem;height:5.5rem}
+.kolom .ref,.kolom .echt{position:absolute;bottom:0;height:var(--h);border-radius:2px 2px 0 0}
+.kolom .ref{left:0;width:100%;background:var(--spoor);outline:1px solid var(--grijs);outline-offset:-1px}
+.kolom .echt{left:22%;width:56%;background:var(--inkt)}
+.dn{font-weight:700;font-size:.9rem;color:var(--inkt)}
+.db{font-size:.75rem;color:var(--zacht);font-variant-numeric:tabular-nums}
+@media (max-width:420px){.db{font-size:.68rem}}
+.dagen-uitleg{font-size:.85rem;color:var(--zacht);margin:0 0 2rem}
+.sw{display:inline-block;width:.75rem;height:.75rem;background:var(--inkt);border-radius:2px;margin:0 .3rem 0 0;vertical-align:-1px}
+.sw.ref{background:var(--spoor);outline:1px solid var(--grijs);outline-offset:-1px;margin-left:.6rem}
+.todo{border:2px solid var(--inkt)}
+.todo ol{margin:.6rem 0 0;padding-left:1.4rem}
+.todo li{padding:.55rem 0;border-top:1px solid var(--lijn)}
+.todo li:first-child{border-top:0}
+.todo a{color:var(--inkt);font-weight:700;text-decoration:underline;text-decoration-color:var(--grijs);text-underline-offset:3px}
+.todo a:hover{text-decoration-color:var(--inkt)}
+.todo a:focus-visible{outline:2px solid var(--groen);outline-offset:2px}
+.todo li span{display:block;color:var(--zacht);font-size:.9rem}
+.tussenkop{font-size:1.25rem;color:var(--inkt);margin:2.5rem 0 .3rem}
+.jaar{color:var(--zacht);margin:0 0 1.25rem;font-size:.95rem}
+.bedraggroot{color:var(--inkt);margin:0 0 .35rem;font-size:1.15rem;font-weight:700;font-variant-numeric:tabular-nums}
+.bedraggroot.plus{color:var(--groentekst)} .bedraggroot.min{color:var(--baksteen)}
+.waarde small{display:block;font-size:.7rem;font-weight:400;color:var(--zacht)}
+section{scroll-margin-top:1rem}
+footer{color:var(--zacht);font-size:.85rem;margin-top:2rem;max-width:38rem}
+footer p{margin:.4rem 0}
+.door{display:flex;align-items:center;gap:.5rem;color:var(--inkt);font-weight:700;margin-bottom:.8rem!important}
+.door img{width:20px;height:auto}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .door img{padding:3px;border-radius:4px}}
+@media (max-width:560px){
+  main{padding:1.75rem 1rem 3rem}
+  .kern{grid-template-columns:1fr 1fr}
+  .kern div:nth-child(3){padding-left:0;border-left:0}
+  .kern div:nth-child(n+3){border-top:1px solid var(--lijn)}
+  .rij,.rij3,.asschaal{grid-template-columns:7rem 1fr 3.6rem;gap:.5rem}
+  .rij3,.asschaal{grid-template-columns:7rem 1fr 4.2rem}
+  .paar{grid-template-columns:1fr}
+  section{padding:1.25rem 1rem}
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img class="logo" src="data:image/png;base64,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" alt="Logo Verstraten &amp; Bergkamp" width="48" height="41">
+  <h1>Hoe ging vorige week?</h1>
+  <p>Cafe De Binnenplaats, week 40: 28 september 2026 tot en met 4 oktober 2026. Vergeleken met een normale week (gemiddelde van 4 eerdere weken zonder event).</p>
+</header>
+
+<dl class="kern">
+  <div><dt>Omzet</dt><dd>€ 23.041<span class="vgl min">3% lager</span><small>normaal € 23.795</small></dd></div>
+  <div><dt>Bonnen</dt><dd>693<span class="vgl min">2% lager</span><small>normaal 710</small></dd></div>
+  <div><dt>Gemiddeld per bon</dt><dd>€ 33,25<span class="vgl gelijk">zoals normaal</span><small>normaal € 33,54</small></dd></div>
+  <div><dt>Over na inkoop</dt><dd>€ 14.177<span class="vgl min">3% lager</span><small>68,4% van de omzet zonder btw</small></dd></div>
+</dl>
+
+<div class="dagen" role="img" aria-label="Omzet per dag vorige week tegenover een normale dag">
+<div class="dag"><span class="pct min">−11%</span><span class="kolom"><span class="ref" style="--h:35.2%"></span><span class="echt" style="--h:31.3%"></span></span><span class="dn">ma</span><span class="db">€ 1.736</span></div>
+<div class="dag"><span class="pct min">−22%</span><span class="kolom"><span class="ref" style="--h:36.2%"></span><span class="echt" style="--h:28.4%"></span></span><span class="dn">di</span><span class="db">€ 1.572</span></div>
+<div class="dag"><span class="pct ">−8%</span><span class="kolom"><span class="ref" style="--h:54.9%"></span><span class="echt" style="--h:50.7%"></span></span><span class="dn">wo</span><span class="db">€ 2.808</span></div>
+<div class="dag"><span class="pct ">+9%</span><span class="kolom"><span class="ref" style="--h:60.8%"></span><span class="echt" style="--h:66.4%"></span></span><span class="dn">do</span><span class="db">€ 3.676</span></div>
+<div class="dag"><span class="pct ">−7%</span><span class="kolom"><span class="ref" style="--h:76.0%"></span><span class="echt" style="--h:70.8%"></span></span><span class="dn">vr</span><span class="db">€ 3.923</span></div>
+<div class="dag"><span class="pct plus">+11%</span><span class="kolom"><span class="ref" style="--h:89.7%"></span><span class="echt" style="--h:100.0%"></span></span><span class="dn">za</span><span class="db">€ 5.540</span></div>
+<div class="dag"><span class="pct min">−11%</span><span class="kolom"><span class="ref" style="--h:76.7%"></span><span class="echt" style="--h:68.3%"></span></span><span class="dn">zo</span><span class="db">€ 3.785</span></div>
+</div>
+<p class="dagen-uitleg"><i class="sw"></i>vorige week <i class="sw ref"></i>normale week. Dinsdag bleef het verst achter: € 1.572 tegen normaal € 2.004.</p>
+
+<section class="todo" aria-labelledby="todo">
+  <h2 id="todo">Deze week doen</h2>
+  <ol>
+    <li><a href="#burger">Burger Koepel: vraag een lagere inkoopprijs of verhoog naar € 19,50</a><span>€ 4.500 per jaar</span></li>
+    <li><a href="#events">Zet de eventkalender van De Koepel in je rooster en bestellijst</a><span>€ 13.244 op 5 dagen</span></li>
+    <li><a href="#happyhour">Zet de happy hour een maand stil en meet opnieuw</a><span>€ 535 minder overgehouden sinds april</span></li>
+  </ol>
+</section>
+
+<h2 class="tussenkop">Waar het geld zit</h2>
+<p class="jaar">Over het hele jaar (1 oktober 2025 tot en met 4 oktober 2026): € 1.173.756 omzet, 35.726 bonnen van gemiddeld € 32,85, en € 723.041 over na inkoop (68,5%).</p>
+
+<section id="burger" aria-labelledby="t1">
+  <p class="bedraggroot">+ € 4.500 per jaar te halen</p>
+  <h2 id="t1">De Burger Koepel verdient het minst van het diner</h2>
+  <p class="uitleg">Wat er per dinergerecht overblijft na btw en inkoop, als deel van de prijs. De burger is het meest verkochte gerecht, maar houdt van elke euro het minst over.</p>
+  <div class="g1" role="img" aria-label="Marge per dinergerecht. Burger Koepel 44,6 procent, de rest tussen 52,5 en 72,4 procent.">
+<div class="rij uitgelicht"><span class="naam">Burger Koepel<small>2.454 verkocht</small></span><span class="spoor"><span class="balk" style="--w:44.6%"></span></span><span class="waarde">44,6%</span></div>
+<div class="rij"><span class="naam">Vis van de dag<small>1.179 verkocht</small></span><span class="spoor"><span class="balk" style="--w:52.5%"></span></span><span class="waarde">52,5%</span></div>
+<div class="rij"><span class="naam">Saté van de haas<small>1.171 verkocht</small></span><span class="spoor"><span class="balk" style="--w:62.0%"></span></span><span class="waarde">62,0%</span></div>
+<div class="rij"><span class="naam">Dagschotel<small>2.024 verkocht</small></span><span class="spoor"><span class="balk" style="--w:63.5%"></span></span><span class="waarde">63,5%</span></div>
+<div class="rij"><span class="naam">Vegan burger<small>1.207 verkocht</small></span><span class="spoor"><span class="balk" style="--w:65.4%"></span></span><span class="waarde">65,4%</span></div>
+<div class="rij"><span class="naam">Dessert van de dag<small>1.732 verkocht</small></span><span class="spoor"><span class="balk" style="--w:69.5%"></span></span><span class="waarde">69,5%</span></div>
+<div class="rij"><span class="naam">Kindermenu<small>568 verkocht</small></span><span class="spoor"><span class="balk" style="--w:70.2%"></span></span><span class="waarde">70,2%</span></div>
+<div class="rij"><span class="naam">Pasta truffel<small>1.628 verkocht</small></span><span class="spoor"><span class="balk" style="--w:71.6%"></span></span><span class="waarde">71,6%</span></div>
+<div class="rij"><span class="naam">Dame blanche<small>1.117 verkocht</small></span><span class="spoor"><span class="balk" style="--w:72.4%"></span></span><span class="waarde">72,4%</span></div>
+  </div>
+  <div class="legenda"><span><i style="background:var(--baksteen)"></i>Burger Koepel</span><span><i style="background:var(--grijs)"></i>Overige dinergerechten</span><span>Hele kaart gemiddeld: 68,5%</span></div>
+  <p class="actie"><strong>Wat te doen</strong>Vraag de leverancier om een lagere inkoopprijs, of verhoog de prijs naar € 19,50.</p>
+</section>
+
+<section id="events" aria-labelledby="t2">
+  <p class="bedraggroot plus">+ € 13.244 extra op 5 eventdagen</p>
+  <h2 id="t2">Een event in De Koepel is de beste dag van het jaar</h2>
+  <p class="uitleg">Omzet op de eventdag (groen) naast een gewone zaterdag in dezelfde periode (grijs). Alle vijf events vielen op een zaterdag en brachten samen zo’n € 13.244 extra op.</p>
+  <div role="img" aria-label="Omzet op vijf eventdagen tegenover een gewone zaterdag: 29 tot 80 procent hoger.">
+<div class="paar"><span class="naam">Winterfair De Koepel<small>za 29 nov</small></span>
+<span class="balken"><span class="spoor"><span class="balk grijs" style="--w:51.4%"></span><span class="bedrag">€ 4.276</span></span>
+<span class="spoor"><span class="balk" style="--w:66.4%"></span><span class="bedrag">€ 5.528 <b>+29%</b></span></span></span></div>
+<div class="paar"><span class="naam">Kerstmarkt Koepelplein<small>za 13 dec</small></span>
+<span class="balken"><span class="spoor"><span class="balk grijs" style="--w:51.0%"></span><span class="bedrag">€ 4.244</span></span>
+<span class="spoor"><span class="balk" style="--w:92.0%"></span><span class="bedrag">€ 7.658 <b>+80%</b></span></span></span></div>
+<div class="paar"><span class="naam">Open dag De Koepel<small>za 14 maa</small></span>
+<span class="balken"><span class="spoor"><span class="balk grijs" style="--w:53.4%"></span><span class="bedrag">€ 4.450</span></span>
+<span class="spoor"><span class="balk" style="--w:86.3%"></span><span class="bedrag">€ 7.187 <b>+62%</b></span></span></span></div>
+<div class="paar"><span class="naam">Koepelfestival<small>za 23 mei</small></span>
+<span class="balken"><span class="spoor"><span class="balk grijs" style="--w:56.9%"></span><span class="bedrag">€ 4.736</span></span>
+<span class="spoor"><span class="balk" style="--w:90.4%"></span><span class="bedrag">€ 7.531 <b>+59%</b></span></span></span></div>
+<div class="paar"><span class="naam">Open Monumentendag<small>za 19 sep</small></span>
+<span class="balken"><span class="spoor"><span class="balk grijs" style="--w:63.4%"></span><span class="bedrag">€ 5.281</span></span>
+<span class="spoor"><span class="balk" style="--w:100.0%"></span><span class="bedrag">€ 8.327 <b>+58%</b></span></span></span></div>
+  </div>
+  <div class="legenda"><span><i style="background:var(--grijs)"></i>Gewone zaterdag</span><span><i style="background:var(--groen)"></i>Eventdag</span></div>
+  <p class="actie"><strong>Wat te doen</strong>Plan voor elke eventdag extra personeel, extra voorraad en een korte kaart.</p>
+</section>
+
+<section id="happyhour" aria-labelledby="t3">
+  <p class="bedraggroot min">− € 535 minder overgehouden sinds april</p>
+  <h2 id="t3">De happy hour verschuift de verkoop, maar levert niets extra op</h2>
+  <p class="uitleg">Wat je per happy-hour-dag (do en vr) meer of minder overhoudt, vergeleken met hoe de andere dagen zich in dezelfde maanden ontwikkelden. Er gaat 14% meer bier over de tap, maar in het uur erna wordt minder verdiend. De weggegeven korting (€ 1.670) is hierin al meegeteld.</p>
+  <div role="img" aria-label="Marge per dag: plus 20 euro tussen 17 en 18 uur, min 31 euro tussen 18 en 19 uur, samen min 10 euro.">
+<div class="rij3"><span class="naam">17–18 uur (happy hour)</span><span class="as"><span class="balk plus" style="--w:32.6%"></span></span><span class="waarde plus">+€ 20<small>per dag</small></span></div>
+<div class="rij3"><span class="naam">18–19 uur (daarna)</span><span class="as"><span class="balk min" style="--w:50.0%"></span></span><span class="waarde min">−€ 31<small>per dag</small></span></div>
+<div class="rij3 totaal"><span class="naam">Samen</span><span class="as"><span class="balk min" style="--w:16.0%"></span></span><span class="waarde min">−€ 10<small>per dag</small></span></div>
+  <div class="asschaal"><span></span><span><span>minder</span><span>meer</span></span><span></span></div>
+  </div>
+  <p class="actie"><strong>Wat te doen</strong>Zet hem een maand stil, of geef de korting op bier met een snack, en vergelijk daarna opnieuw.</p>
+</section>
+
+<footer>
+  <p class="door"><img src="data:image/png;base64,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" alt="" width="20" height="17"> Opgesteld door Verstraten &amp; Bergkamp</p>
+  <p>Omzet en marge zonder fooi; correcties zijn verrekend. Brutomarge is omzet zonder btw min de kostprijs van de producten, dus zonder personeel, huur en energie.</p>
+  <p>Gebaseerd op de kassadata, productkaart en het weerbestand in week-5. De cijfers zijn fictief.</p>
+</footer>
+</main>
+</body>
+</html>
